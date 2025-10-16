@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Videojuegos</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .acciones a { margin-right: 10px; text-decoration: none; color: #007bff; }
+        .acciones a:hover { text-decoration: underline; }
+        .btn-agregar {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .btn-agregar:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+    <h1>Lista de Videojuegos</h1>
+
+    <a href="{% url 'agregar_videojuego' %}" class="btn-agregar">Agregar Nuevo Videojuego</a>
+
+    {% if videojuegos %} {# Cambiado de 'inventarios' a 'videojuegos' #}
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Desarrollador</th>
+                <th>Género</th>
+                <th>Plataforma</th>
+                <th>Fecha de Lanzamiento</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for juego in videojuegos %} {# Cambiado de 'inventario' a 'juego' #}
+            <tr>
+                <td>{{ juego.titulo }}</td>
+                <td>{{ juego.desarrollador }}</td>
+                <td>{{ juego.genero }}</td>
+                <td>{{ juego.plataforma }}</td>
+                <td>{{ juego.fecha_lanzamiento }}</td>
+                <td class="acciones">
+                    <a href="{% url 'editar_videojuego' juego.pk %}">Editar</a> |
+                    <a href="{% url 'borrar_videojuego' juego.pk %}">Borrar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No hay videojuegos registrados.</p>
+    {% endif %}
+
+
+</body>
+</html>

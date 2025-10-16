@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Nuevo Videojuego</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        form { margin-top: 20px; padding: 20px; border: 1px solid #ddd; border-radius: 5px; max-width: 500px; background-color: #f9f9f9; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; }
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover { background-color: #0056b3; }
+        .back-link { display: block; margin-top: 20px; text-decoration: none; color: #666; }
+    </style>
+</head>
+<body>
+    <h1>Agregar Nuevo Videojuego</h1>
+
+    <form method="post">
+        {% csrf_token %} {# ¡MUY IMPORTANTE para la seguridad en Django! #}
+        
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required>
+
+        <label for="desarrollador">Desarrollador:</label>
+        <input type="text" id="desarrollador" name="desarrollador" required>
+
+        <label for="genero">Género:</label>
+        <input type="text" id="genero" name="genero" required>
+
+        <label for="plataforma">Plataforma:</label>
+        <input type="text" id="plataforma" name="plataforma" required>
+
+        <label for="fecha_lanzamiento">Fecha de Lanzamiento:</label>
+        <input type="text" id="fecha_lanzamiento" name="fecha_lanzamiento" required>
+        
+        <button type="submit">Guardar Videojuego</button>
+    </form>
+
+    <a href="{% url 'inicio' %}" class="back-link">Volver a la lista</a>
+</body>
+</html>

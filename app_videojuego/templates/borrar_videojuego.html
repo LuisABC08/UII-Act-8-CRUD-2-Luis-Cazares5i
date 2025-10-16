@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Borrar Videojuego</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #dc3545; }
+        p { margin-top: 20px; font-size: 1.1em; }
+        .confirm-box {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #dc3545;
+            border-radius: 5px;
+            max-width: 400px;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .actions { margin-top: 20px; }
+        .actions button {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        .actions button:hover { background-color: #c82333; }
+        .actions a {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .actions a:hover { background-color: #5a6268; }
+    </style>
+</head>
+<body>
+    <h1>Confirmar Borrar Videojuego</h1>
+
+    <div class="confirm-box">
+        <p>¿Estás seguro de que quieres borrar el siguiente videojuego?</p>
+        <p><strong>Título:</strong> {{ videojuego.titulo }}</p> {# Cambiado de inventario.id_videojuego a videojuego.titulo #}
+        <p><strong>Desarrollador:</strong> {{ videojuego.desarrollador }}</p> {# Añadido para más detalles #}
+        <!-- Puedes añadir más detalles si lo deseas -->
+    </div>
+    
+    <form method="post" class="actions">
+        {% csrf_token %}
+        <button type="submit">Sí, Borrar</button>
+        <a href="{% url 'inicio' %}" class="btn-cancel">Cancelar</a> {# Asegurado de que el botón sea un enlace y no un input #}
+    </form>
+
+</body>
+</html>
